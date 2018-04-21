@@ -30,6 +30,8 @@ def messageToScreen(msg, color, x, y):
     screenText = font.render(msg, True, color)
     gameDisplay.blit(screenText, [x, y])
 
+
+
 def gameLoop():
     gameExit = False
     gameOver = False
@@ -49,13 +51,17 @@ def gameLoop():
     while not gameExit:
         while gameStart:
             gameDisplay.fill(WHITE)
+            try:
+                with open(str(Path.home()) + '/Documents/slither_save.txt') as f:
+                    temporaryMovement = 300
+                    for line in f:
+                        messageToScreen(line, GREEN, displayWidth/2, temporaryMovement)
+                        temporaryMovement += 20
+                        pygame.display.update()
+            except FileNotFoundError:
+                with open(str(Path.home()) + '/Documents/slither_save.txt', 'a') as f:
+                    continue
             messageToScreen("Press 'P' to play the game", BLACK, 200, 200)
-            with open(str(Path.home()) + '/Documents/slither_save.txt', 'a') as f:
-                temporaryMovement = 300
-                for line in f:
-                    messageToScreen(line, GREEN, displayWidth/2, temporaryMovement)
-                    temporaryMovement += 20
-                pygame.display.update()
             pygame.display.update()
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
