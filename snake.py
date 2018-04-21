@@ -50,7 +50,7 @@ def gameLoop():
         while gameStart:
             gameDisplay.fill(WHITE)
             messageToScreen("Press 'P' to play the game", BLACK, 200, 200)
-            with open(str(Path.home()) + '/Documents/slither_save.txt') as f:
+            with open(str(Path.home()) + '/Documents/slither_save.txt', 'a') as f:
                 temporaryMovement = 300
                 for line in f:
                     messageToScreen(line, GREEN, displayWidth/2, temporaryMovement)
