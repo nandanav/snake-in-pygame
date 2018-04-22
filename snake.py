@@ -13,8 +13,8 @@ PURPLE = (138, 43, 226)
 
 displayWidth = 800
 displayHeight = 600
-gameDisplay = pygame.display.set_mode((displayWidth, displayHeight))
-pygame.display.set_caption('Abhinav\'s Slither')
+gameDisplay = pygame.display.set_mode((displayWidth, displayHeight), pygame.RESIZABLE)
+pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
 blockSize = 10
 FPS = 30
