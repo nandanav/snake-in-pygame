@@ -14,9 +14,11 @@ PURPLE = (138, 43, 226)
 displayWidth = 800
 displayHeight = 600
 gameDisplay = pygame.display.set_mode((displayWidth, displayHeight), pygame.RESIZABLE)
+displayWidth = pygame.display.get_surface().get_width()
+displayHeight = pygame.display.get_surface().get_height()
 pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
-blockSize = (displayWidth - displayHeight) / 10
+blockSize = 10
 FPS = 30
 font = pygame.font.SysFont(None, 25)
 
@@ -37,12 +39,12 @@ def gameLoop():
     gameOver = False
     gameSave = False
     gameStart = True
-    leadX = displayHeight/2
-    leadY = displayWidth/2
+    leadX = round(displayHeight/2)
+    leadY = round(displayWidth/2)
     leadXChange = 0
     leadYChange = 0
-    randAppleX = round(randrange(0, displayWidth-blockSize)/10.0)*10.0
-    randAppleY = round(randrange(0, displayHeight-blockSize)/10.0)*10.0
+    randAppleX = round(randrange(0, displayWidth-blockSize, blockSize)/10.0)*10.0
+    randAppleY = round(randrange(0, displayHeight-blockSize, blockSize)/10.0)*10.0
     snakeList = []
     snakeLength = 1
     score = 0
@@ -149,10 +151,12 @@ def gameLoop():
 
         snake(blockSize, snakeList)
         pygame.display.update()
+        print(leadX, randAppleX)
+        print(leadY, randAppleY)
 
         if leadX == randAppleX and leadY == randAppleY:
-            randAppleX = round(randrange(0, displayWidth-blockSize)/10.0)*10.0
-            randAppleY = round(randrange(0, displayHeight-blockSize)/10.0)*10.0
+            randAppleX = round(randrange(0, displayWidth-blockSize, blockSize)/10.0)*10.0
+            randAppleY = round(randrange(0, displayHeight-blockSize, blockSize)/10.0)*10.0
             snakeLength += 1
             score += 1
 
