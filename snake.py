@@ -16,7 +16,7 @@ displayHeight = 600
 gameDisplay = pygame.display.set_mode((displayWidth, displayHeight), pygame.RESIZABLE)
 pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
-blockSize = 10
+blockSize = (displayWidth - displayHeight) / 10
 FPS = 30
 font = pygame.font.SysFont(None, 25)
 
@@ -117,16 +117,16 @@ def gameLoop():
                 gameExit = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    leadXChange -= blockSize
+                    leadXChange = -(blockSize)
                     leadYChange = 0
                 elif event.key == pygame.K_RIGHT:
-                    leadXChange += blockSize
+                    leadXChange = blockSize
                     leadYChange = 0
                 elif event.key == pygame.K_UP:
-                    leadYChange -= blockSize
+                    leadYChange = -(blockSize)
                     leadXChange = 0
                 elif event.key == pygame.K_DOWN:
-                    leadYChange += blockSize
+                    leadYChange = blockSize
                     leadXChange = 0
         if leadX >= displayWidth or leadX <= 0 or leadY >= displayHeight or leadY <= 0:
             gameOver = True
